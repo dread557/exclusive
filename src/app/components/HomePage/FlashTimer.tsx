@@ -4,7 +4,7 @@ import CountdownTimer from "../CountdownTimer";
 
 const FlashTimer = () => {
   const { timerDays, timerHours, timerMinutes, timerSeconds } = CountdownTimer({
-    date: "April 24, 2024",
+    date: "June 24, 2024",
   });
   return (
     <aside className="flex gap-[1rem] md:gap-[2rem] items-center">

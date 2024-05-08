@@ -5,7 +5,7 @@ import CountdownTimer from "../CountdownTimer";
 
 const Banner = () => {
   const { timerDays, timerHours, timerMinutes, timerSeconds } = CountdownTimer({
-    date: "10 April, 2024",
+    date: "10 June, 2024",
   });
   return (
     <aside
