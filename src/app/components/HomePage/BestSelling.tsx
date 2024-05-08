@@ -4,7 +4,7 @@ import SectionHeader from "./SectionHeader";
 import Button from "@/app/UI/Button";
 import { BestSellingProducts } from "@/app/data/data";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import ItemCard from "../ItemCard";
+import ItemCard from "../Cards/ItemCard";
 
 import "swiper/css";
 import "swiper/css/pagination";

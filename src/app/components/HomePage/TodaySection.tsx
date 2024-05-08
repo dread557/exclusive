@@ -1,7 +1,7 @@
 import React from "react";
 import CountdownTimer from "../CountdownTimer";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
-import ItemCard from "../ItemCard";
+import ItemCard from "../Cards/ItemCard";
 import { useSwiper } from "swiper/react";
 import ProductSlide from "./ProductSlide";
 import Button from "@/app/UI/Button";

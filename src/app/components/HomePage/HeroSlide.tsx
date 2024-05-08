@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const HeroSlide = () => {
   return (
-    <div className="w-full md:w-[75%] pl-[3rem] pr-[3rem] md:pl-[7rem] lg:pl-[10rem] pt-[4rem] ">
+    <div className="w-full md:w-[75%] pl-[3rem] pr-[3rem] md:pl-[7rem] lg:pl-[10rem] md:pt-[4rem] ">
       <Swiper
         autoplay={{
           delay: 2500,

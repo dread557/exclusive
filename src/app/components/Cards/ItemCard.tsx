@@ -3,17 +3,21 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { IoEyeOutline } from "react-icons/io5";
-import { ItemCardProps } from "../types";
+import { ItemCardProps } from "../../types";
 import { Rating } from "react-simple-star-rating";
+import { useRouter } from "next/navigation";
 
 const ItemCard: React.FC<ItemCardProps> = ({
+  id,
   name,
   price,
   discount,
   image,
   totalRating,
   rating,
+  type = "product",
 }) => {
+  const router = useRouter();
   const [liked, setLiked] = useState(false);
   const getNewPrice = ({
     price,
@@ -44,21 +48,49 @@ const ItemCard: React.FC<ItemCardProps> = ({
           width={190}
           height={180}
         />
-        <div className="flex flex-col  gap-[1rem] absolute right-[3%] top-[4%]">
+        {type === "product" ? (
+          <div className="flex flex-col  gap-[1rem] absolute right-[3%] top-[4%]">
+            <button
+              onClick={() => setLiked(!liked)}
+              className="bg-white w-[3.4rem] h-[3.4rem] flex justify-center items-center rounded-full hover:border "
+            >
+              {liked ? (
+                <GoHeartFill className="w-[1.6rem] h-[1.4rem] text-[#db4444]" />
+              ) : (
+                <GoHeart className="w-[1.6rem] h-[1.4rem]" />
+              )}
+            </button>
+            <button
+              onClick={() => router.push(`/product/${id}`)}
+              className="bg-white w-[3.4rem] h-[3.4rem] flex justify-center items-center rounded-full hover:border"
+            >
+              <IoEyeOutline className="w-[1.6rem] h-[1.4rem]" />
+            </button>
+          </div>
+        ) : (
           <button
-            onClick={() => setLiked(!liked)}
-            className="bg-white w-[3.4rem] h-[3.4rem] flex justify-center items-center rounded-full hover:border "
+            onClick={() => {}}
+            className="bg-white w-[3.4rem] h-[3.4rem] flex justify-center items-center rounded-full hover:border absolute right-[3%] top-[4%]"
           >
-            {liked ? (
-              <GoHeartFill className="w-[1.6rem] h-[1.4rem] text-[#db4444]" />
-            ) : (
-              <GoHeart className="w-[1.6rem] h-[1.4rem]" />
-            )}
+            <svg
+              className="w-[1.6rem] h-[1.4rem]"
+              width="18"
+              height="20"
+              viewBox="0 0 18 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17 3.57143H2.33333L3.66667 19H14.3333L15.6667 3.57143H1M9 7.42857V15.1429M12.3333 7.42857L11.6667 15.1429M5.66667 7.42857L6.33333 15.1429M6.33333 3.57143L7 1H11L11.6667 3.57143"
+                stroke="black"
+                strokeWidth="1.56"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
-          <button className="bg-white w-[3.4rem] h-[3.4rem] flex justify-center items-center rounded-full hover:border">
-            <IoEyeOutline className="w-[1.6rem] h-[1.4rem]" />
-          </button>
-        </div>
+        )}
+
         <button className="mt-[1rem] group-hover:opacity-100  opacity-0 w-full h-[4.1rem] bg-black text-white text-[1.6rem] font-medium ease-in-out duration-500">
           Add to cart
         </button>

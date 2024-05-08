@@ -2,6 +2,7 @@ import { ItemCardProps } from "../types";
 
 export const TodayProducts: ItemCardProps[] = [
   {
+    id: 1,
     name: "HAVIT HV-G92 Gamepad",
     price: 160,
     rating: 1.5,
@@ -10,6 +11,7 @@ export const TodayProducts: ItemCardProps[] = [
     totalRating: 88,
   },
   {
+    id: 2,
     name: "AK-900 Wired Keyboard",
     price: 1160,
     rating: 4,
@@ -18,6 +20,7 @@ export const TodayProducts: ItemCardProps[] = [
     totalRating: 75,
   },
   {
+    id: 3,
     name: "IPS LCD Gaming Monitor",
     price: 400,
     rating: 5,
@@ -26,6 +29,7 @@ export const TodayProducts: ItemCardProps[] = [
     totalRating: 75,
   },
   {
+    id: 4,
     name: "S-Series Comfort Chair ",
     price: 400,
     rating: 4.5,
@@ -34,6 +38,7 @@ export const TodayProducts: ItemCardProps[] = [
     totalRating: 99,
   },
   {
+    id: 5,
     name: "Curology Product Set ",
     price: 500,
     rating: 5,
@@ -42,6 +47,7 @@ export const TodayProducts: ItemCardProps[] = [
     totalRating: 145,
   },
   {
+    id: 6,
     name: "HAVIT HV-G92 Gamepad",
     price: 120,
     rating: 5,
@@ -50,6 +56,7 @@ export const TodayProducts: ItemCardProps[] = [
     totalRating: 88,
   },
   {
+    id: 7,
     name: "AK-900 Wired Keyboard",
     price: 960,
     rating: 4,
@@ -60,6 +67,7 @@ export const TodayProducts: ItemCardProps[] = [
 ];
 export const BestSellingProducts: ItemCardProps[] = [
   {
+    id: 1904,
     name: "The north coat",
     price: 360,
     rating: 5,
@@ -68,6 +76,7 @@ export const BestSellingProducts: ItemCardProps[] = [
     totalRating: 7865,
   },
   {
+    id: 1564,
     name: "Gucci duffle bag",
     price: 1160,
     rating: 4.5,
@@ -76,6 +85,7 @@ export const BestSellingProducts: ItemCardProps[] = [
     discount: 25,
   },
   {
+    id: 751,
     name: "RGB liquid CPU Cooler",
     price: 170,
     rating: 4.5,
@@ -84,6 +94,7 @@ export const BestSellingProducts: ItemCardProps[] = [
     discount: 8,
   },
   {
+    id: 10094,
     name: "Small BookSelf",
     price: 360,
     rating: 5,
@@ -94,6 +105,7 @@ export const BestSellingProducts: ItemCardProps[] = [
 
 export const ourProducts: ItemCardProps[] = [
   {
+    id: 4551,
     name: "Breed Dry Dog Food",
     price: 100,
     rating: 3,
@@ -101,6 +113,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 35,
   },
   {
+    id: 8991,
     name: "CANON EOS DSLR Camera",
     price: 360,
     rating: 4,
@@ -108,6 +121,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 95,
   },
   {
+    id: 61,
     name: "ASUS FHD Gaming Laptop",
     price: 700,
     rating: 5,
@@ -115,6 +129,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 325,
   },
   {
+    id: 331,
     name: "Curology Product Set ",
     price: 500,
     rating: 5,
@@ -122,6 +137,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 145,
   },
   {
+    id: 91,
     name: "Kids Electric Car",
     price: 960,
     rating: 5,
@@ -129,6 +145,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 65,
   },
   {
+    id: 111111,
     name: "Jr. Zoom Soccer Cleats",
     price: 1160,
     rating: 3.5,
@@ -136,6 +153,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 65,
   },
   {
+    id: 657,
     name: "GP11 Shooter USB Gamepad",
     price: 660,
     rating: 4.5,
@@ -143,6 +161,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 399,
   },
   {
+    id: 8484,
     name: "Quilted Satin Jacket",
     price: 5000,
     rating: 4.5,
@@ -150,6 +169,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 9,
   },
   {
+    id: 1090,
     name: "Breed Dry Dog Food",
     price: 100,
     rating: 3,
@@ -157,6 +177,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 35,
   },
   {
+    id: 9980,
     name: "CANON EOS DSLR Camera",
     price: 360,
     rating: 4,
@@ -164,6 +185,7 @@ export const ourProducts: ItemCardProps[] = [
     totalRating: 95,
   },
   {
+    id: 2345,
     name: "ASUS FHD Gaming Laptop",
     price: 700,
     rating: 5,
