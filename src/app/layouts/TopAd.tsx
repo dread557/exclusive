@@ -1,4 +1,6 @@
+import Currency from "@/components/Currency";
 import Link from "next/link";
+
 import { IoIosArrowDown } from "react-icons/io";
 
 export default function TopAd() {
@@ -12,11 +14,14 @@ export default function TopAd() {
           </Link>
         </span>
       </p>
-      <div className="flex justify-end items-center gap-2 lg:absolute right-[10%]">
-        <span className="text-white text-[1.4rem]">English</span>
-        <button className="">
-          <IoIosArrowDown className="text-white" />
-        </button>
+      <div className="flex justify-center items-center gap-[40px]">
+        <Currency />
+        <div className="flex justify-end items-center gap-2 lg:absolute right-[10%]">
+          <span className="text-white text-[1.4rem]">English</span>
+          <button className="">
+            <IoIosArrowDown className="text-white" />
+          </button>
+        </div>
       </div>
     </section>
   );

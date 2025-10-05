@@ -19,14 +19,15 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/UI/RadioInput"
+    "src/UI/RadioInput"
   ],
   "exclude": ["node_modules"]
 }

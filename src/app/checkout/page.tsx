@@ -5,11 +5,17 @@ import Link from "next/link";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Image from "next/image";
-import CheckoutItem from "../components/checkout/CheckoutItem";
-import RadioInput from "../UI/RadioInput";
-import Button from "../UI/Button";
+import CheckoutItem from "../../components/checkout/CheckoutItem";
+import RadioInput from "../../UI/RadioInput";
+import Button from "../../UI/Button";
+import { useCartStore } from "@/store/cart";
+import { convertCurrency } from "@/utils/misc";
+import { GetItemFromLocalStorage } from "@/utils/localStorageHelper";
 
 const Checkout = () => {
+  const cart = useCartStore((state) => state.cart);
+  const currency = GetItemFromLocalStorage("currency");
+  const SHIPPING_FEE = parseFloat(convertCurrency(0, currency));
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -33,6 +39,16 @@ const Checkout = () => {
   const handlePaymentMethodChange = (value: string) => {
     setSelectedPaymentMethod(value);
   };
+
+  const subTotal = parseFloat(
+    convertCurrency(
+      cart.length >= 1
+        ? cart.reduce((total, item) => total + item.price * item.count, 0)
+        : 0,
+      currency
+    )
+  );
+  const total = subTotal + SHIPPING_FEE;
 
   return (
     <MainLayout>
@@ -62,14 +78,7 @@ const Checkout = () => {
               validationSchema={validationSchema}
               onSubmit={(values) => {}}
             >
-              {({
-                values,
-                handleChange,
-                handleBlur,
-                errors,
-                touched,
-                setValues,
-              }) => (
+              {({ values, handleBlur, setValues }) => (
                 <Form className="flex flex-col gap-[1.5rem] basis-[40%]">
                   <div>
                     <label className="text-[1.6rem] block text-gray-300 mb-[1rem]">
@@ -82,7 +91,7 @@ const Checkout = () => {
                     />
                     <ErrorMessage
                       name="firstName"
-                      component="div"
+                      component="p"
                       className="text-red-500 text-[1.2rem] mt-[1rem]"
                     />
                   </div>
@@ -97,7 +106,7 @@ const Checkout = () => {
                     />
                     <ErrorMessage
                       name="lastName"
-                      component="div"
+                      component="p"
                       className="text-red-500 text-[1.2rem] mt-[1rem]"
                     />
                   </div>
@@ -112,7 +121,7 @@ const Checkout = () => {
                     />
                     <ErrorMessage
                       name="streetAddress"
-                      component="div"
+                      component="p"
                       className="text-red-500 text-[1.2rem] mt-[1rem]"
                     />
                   </div>
@@ -127,7 +136,7 @@ const Checkout = () => {
                     />
                     <ErrorMessage
                       name="apartment"
-                      component="div"
+                      component="p"
                       className="text-red-500 text-[1.2rem] mt-[1rem]"
                     />
                   </div>
@@ -142,7 +151,7 @@ const Checkout = () => {
                     />
                     <ErrorMessage
                       name="phoneNumber"
-                      component="div"
+                      component="p"
                       className="text-red-500 text-[1.2rem] mt-[1rem]"
                     />
                   </div>
@@ -157,7 +166,7 @@ const Checkout = () => {
                     />
                     <ErrorMessage
                       name="email"
-                      component="div"
+                      component="p"
                       className="text-red-500 text-[1.2rem] mt-[1rem]"
                     />
                   </div>
@@ -195,20 +204,30 @@ const Checkout = () => {
             </Formik>
             <section className="basis-[30%] flex flex-col gap-[2rem]">
               <div className="flex flex-col gap-[2rem]">
-                <CheckoutItem />
-                <CheckoutItem />
+                {cart.map((item) => (
+                  <CheckoutItem key={item._id} {...item} />
+                ))}
               </div>
               <div className="flex justify-between border-b border-gray-500 pb-[1rem] ">
                 <span className="text-[1.4rem]">Subtotal:</span>
-                <span className="text-[1.4rem]">$1556</span>
+                <span className="text-[1.4rem]">
+                  {" "}
+                  {`${currency === "USD" ? "$" : "₦"}${subTotal.toLocaleString()}`}
+                </span>
               </div>
               <div className="flex justify-between border-b border-gray-500 pb-[1rem] ">
                 <span className="text-[1.4rem]">Shipping:</span>
-                <span className="text-[1.4rem]">Free</span>
+                <span className="text-[1.4rem]">
+                  {" "}
+                  {SHIPPING_FEE === 0 ? "Free" : 0}
+                </span>
               </div>
               <div className="flex justify-between pb-[1rem] ">
                 <span className="text-[1.4rem]">Total:</span>
-                <span className="text-[1.4rem]">$1750</span>
+                <span className="text-[1.4rem]">
+                  {" "}
+                  {`${currency === "USD" ? "$" : "₦"}${total.toLocaleString()}`}
+                </span>
               </div>
               <div className="flex justify-between items-center mt-[2rem]">
                 <RadioInput

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import MainLayout from "../layouts/MainLayout";
-import Button from "../UI/Button";
+import Button from "../../UI/Button";
 import { useRouter } from "next/navigation";
 
 const Success = () => {

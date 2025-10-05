@@ -10,11 +10,17 @@ import { FiHeart } from "react-icons/fi";
 import { HiOutlineMinusSmall } from "react-icons/hi2";
 import { usePathname } from "next/navigation";
 import { RxPerson } from "react-icons/rx";
-import Hamburger from "../components/Hamburger";
-import { SideNavItems } from "../components/HomePage/SideNav";
+import Hamburger from "../../components/Hamburger";
+import { SideNavItems } from "../../components/HomePage/SideNav";
 import { useRouter } from "next/navigation";
+import { useCartStore } from "@/store/cart";
+import { useFavStore } from "@/store/favorites";
 
 const Navbar = () => {
+  const getCount = useCartStore((state) => state.count);
+  const favorites = useFavStore((state) => state.favorites) || [];
+  const [cartCount, setCartCount] = useState(0);
+  const [favoritesCount, setFavoritesCount] = useState(0);
   const pathName = usePathname();
   const router = useRouter();
   const isActive = (href: string) => pathName === href;
@@ -43,6 +49,20 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [openProfile]);
+  useEffect(() => {
+    setCartCount(getCount());
+    setFavoritesCount(favorites.length);
+    const unsubscribeCart = useCartStore.subscribe((newState) => {
+      setCartCount(newState.count);
+    });
+    const unsubscribeFavorites = useFavStore.subscribe((newState) => {
+      setFavoritesCount(newState.favorites.length);
+    });
+    return () => {
+      unsubscribeCart();
+      unsubscribeFavorites();
+    };
+  }, [getCount, favorites.length]);
 
   return (
     <>
@@ -111,17 +131,21 @@ const Navbar = () => {
               className="p-1 relative block w-full h-full"
             >
               <FiHeart className="w-[2.4rem] h-[2.4rem]" />
-              <span className="bg-[#db4444] rounded-full w-[1.7rem] h-[1.7rem] text-white absolute -top-[5px] -right-[.8rem] flex items-end justify-center p-1">
-                7
-              </span>
+              {favoritesCount > 0 && (
+                <span className="bg-[#db4444] rounded-full w-[1.7rem] h-[1.7rem] text-white absolute -top-[5px] -right-[.8rem] flex items-end justify-center p-1">
+                  {favoritesCount}
+                </span>
+              )}
             </Link>
           </li>
           <li className="w-[2.4rem] h-[2.4rem]">
             <Link href={"/cart"} className="p-1 relative block w-full h-full">
               <IoCartOutline className="w-[2.4rem] h-[2.4rem]" />{" "}
-              <span className="bg-[#db4444] rounded-full w-[1.7rem] h-[1.7rem] text-white absolute -top-[5px] -right-[.5rem] flex items-end justify-center p-1">
-                3
-              </span>
+              {cartCount > 0 && (
+                <span className="bg-[#db4444] rounded-full w-[1.7rem] h-[1.7rem] text-white absolute -top-[5px] -right-[.5rem] flex items-end justify-center p-1">
+                  {cartCount}
+                </span>
+              )}
             </Link>
           </li>
           <li>
